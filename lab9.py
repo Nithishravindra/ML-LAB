@@ -30,4 +30,4 @@ print("Actual:{0} {1}".format(
     y_test[i], iris_dataset['target_names'][y_test[i]]))
 print("Predicted:{0} {1}".format(
     predicted, iris_dataset['target_names'][predicted]))
-print("test score:", kn.score(X_test, y_test)
+print("test score:", kn.score(X_test, y_test))

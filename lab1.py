@@ -10,7 +10,7 @@ for example in data:
     i = 0
     for feature in example:
         if (S[i] == feature or S[i] == "o"):
-            S[i] = example
+            S[i] = feature
         else:
             S[i] = '?'
         i += 1

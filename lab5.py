@@ -1,6 +1,8 @@
+
 import csv
 import random
 import math
+
 
 def loadcsv(filename):
     lines = csv.reader(open(filename, "r"))
@@ -9,14 +11,17 @@ def loadcsv(filename):
         dataset[i] = [float(x) for x in dataset[i]]
     return dataset
 
+
 def splitDataset(dataset, splitRatio):
     trainSize = int(len(dataset) * splitRatio)
     trainSet = []
     trainSet, testSet = dataset[:trainSize], dataset[trainSize:]
     return [trainSet, testSet]
 
+
 def mean(numbers):
     return sum(numbers)/(len(numbers))
+
 
 def stdev(numbers):
     avg = mean(numbers)
@@ -24,6 +29,7 @@ def stdev(numbers):
     for x in numbers:
         v += (x-avg)**2
     return math.sqrt(v/(len(numbers)-1))
+
 
 def summarizeByClass(dataset):
     separated = {}
@@ -38,9 +44,11 @@ def summarizeByClass(dataset):
                                  for attribute in zip(*instances)][:-1]
     return summaries
 
+
 def calculateProbability(x, mean, stdev):
     exponent = math.exp((-(x-mean)**2)/(2*(stdev**2)))
     return (1 / ((2*math.pi)**(1/2)*stdev)) * exponent
+
 
 def predict(summaries, inputVector):
     probabilities = {}
@@ -57,6 +65,7 @@ def predict(summaries, inputVector):
             bestLabel = classValue
     return bestLabel
 
+
 def getPredictions(summaries, testSet):
     predictions = []
     for i in range(len(testSet)):
@@ -64,12 +73,14 @@ def getPredictions(summaries, testSet):
         predictions.append(result)
     return predictions
 
+
 def getAccuracy(testSet, predictions):
     correct = 0
     for i in range(len(testSet)):
         if testSet[i][-1] == predictions[i]:
             correct += 1
     return (correct/(len(testSet))) * 100.0
+
 
 filename = 'csv5.csv'
 splitRatio = 0.67
